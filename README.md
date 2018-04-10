@@ -1,6 +1,10 @@
 # Is this an okhttp bug?
 
-This project shows what I have observed using okhttp to hit a crate.io blob store.  
+This project shows what I have observed using okhttp to hit a crate.io blob store.  I used it create 
+https://github.com/square/okhttp/issues/3964, which was solved by adding a Connection: close header 
+to the request.
+
+--
 
 What appears to be happening, is this:
 

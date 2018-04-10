@@ -41,7 +41,7 @@ public class OkHttpTest {
         private OkHttpClient client = new OkHttpClient.Builder().build();
 
         public MyResponse getBlob(String url) throws IOException {
-            Request request = new Request.Builder().url(url).build();
+            Request request = new Request.Builder().url(url).addHeader("Connection","close").build();
             Call call = client.newCall(request);
             Response response = call.execute();
             String body = "";
@@ -118,7 +118,8 @@ public class OkHttpTest {
         assertEquals("200 -> A", just.doIt(url_A));
         assertEquals("404 -> ", just.doIt(url_404));
         // this should be a 200 but as shown in the prior test it is a 404
-        assertEquals("404 -> ", just.doIt(url_C));
+        //assertEquals("404 -> ", just.doIt(url_C));
+        assertEquals("200 -> C", just.doIt(url_C));
         // this will be a 200 but the content is C not D
         assertEquals("200 -> D", just.doIt(url_D));
     }
